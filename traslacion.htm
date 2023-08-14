@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculadora de Traslación de Vectores</title>
+    <script>
+        function calcularTraslacion() {
+            const traslacionX = parseFloat(document.getElementById('traslacionX').value);
+            const traslacionY = parseFloat(document.getElementById('traslacionY').value);
+            const x = parseFloat(document.getElementById('x').value);
+            const y = parseFloat(document.getElementById('y').value);
+
+            const xTrasladado = x + traslacionX;
+            const yTrasladado = y + traslacionY;
+
+            document.getElementById('resultado').textContent = `Vector Trasladado: (${xTrasladado.toFixed(2)}, ${yTrasladado.toFixed(2)})`;
+        }
+    </script>
+</head>
+<body>
+    <h1>Calculadora de Traslación de Vectores</h1>
+    <label for="traslacionX">Traslación en X:</label>
+    <input type="number" id="traslacionX" step="any" placeholder="Ingrese la traslación en X">
+    <br>
+    <label for="traslacionY">Traslación en Y:</label>
+    <input type="number" id="traslacionY" step="any" placeholder="Ingrese la traslación en Y">
+    <br>
+    <label for="x">Componente x del Vector:</label>
+    <input type="number" id="x" step="any" placeholder="Ingrese la componente x">
+    <br>
+    <label for="y">Componente y del Vector:</label>
+    <input type="number" id="y" step="any" placeholder="Ingrese la componente y">
+    <br>
+    <button onclick="calcularTraslacion()">Calcular Traslación</button>
+    <br>
+    <p id="resultado">Resultado: Vector Trasladado</p>
+</body>
+</html>
