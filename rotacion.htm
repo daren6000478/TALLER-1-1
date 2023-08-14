@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculadora de Rotación de Vectores</title>
+    <script>
+        function calcularRotacion() {
+            const angulo = parseFloat(document.getElementById('angulo').value);
+            const x = parseFloat(document.getElementById('x').value);
+            const y = parseFloat(document.getElementById('y').value);
+
+            const anguloRadianes = (angulo * Math.PI) / 180;
+            const xRotado = x * Math.cos(anguloRadianes) - y * Math.sin(anguloRadianes);
+            const yRotado = x * Math.sin(anguloRadianes) + y * Math.cos(anguloRadianes);
+
+            document.getElementById('resultado').textContent = `Vector Rotado: (${xRotado.toFixed(2)}, ${yRotado.toFixed(2)})`;
+        }
+    </script>
+</head>
+<body>
+    <h1>Calculadora de Rotación de Vectores</h1>
+    <label for="angulo">Ángulo de Rotación (grados):</label>
+    <input type="number" id="angulo" step="any" placeholder="Ingrese el ángulo">
+    <br>
+    <label for="x">Componente x del Vector:</label>
+    <input type="number" id="x" step="any" placeholder="Ingrese la componente x">
+    <br>
+    <label for="y">Componente y del Vector:</label>
+    <input type="number" id="y" step="any" placeholder="Ingrese la componente y">
+    <br>
+    <button onclick="calcularRotacion()">Calcular Rotación</button>
+    <br>
+    <p id="resultado">Resultado: Vector Rotado</p>
+</body>
+</html>
