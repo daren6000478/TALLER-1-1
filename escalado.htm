@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Escalador de Vectores</title>
+    <script>
+        function escalarVector() {
+            var vectorInput = document.getElementById("vector").value;
+            var escalarInput = parseFloat(document.getElementById("escalar").value);
+
+            var vectorArray = vectorInput.split(",").map(Number);
+            var resultadoArray = vectorArray.map(function(valor) {
+                return valor * escalarInput;
+            });
+
+            document.getElementById("resultado").innerHTML = "Vector escalado: " + resultadoArray.join(", ");
+        }
+    </script>
+</head>
+<body>
+    <h1>Escalador de Vectores</h1>
+    <p>Ingrese un vector (por ejemplo: 1, 2, 3) y un valor escalar:</p>
+    <input type="text" id="vector" placeholder="Vector">
+    <input type="number" id="escalar" placeholder="Escalar">
+    <button onclick="escalarVector()">Escalar</button>
+    <p id="resultado"></p>
+</body>
+</html>
