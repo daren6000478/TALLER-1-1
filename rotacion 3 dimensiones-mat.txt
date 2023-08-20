@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rotación de Vectores en 3D</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+  }
+  .container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+</style>
+<script>
+function degToRad(degrees) {
+    return degrees * (Math.PI / 180);
+}
+
+function rotateVector(vector, angleX, angleY, angleZ) {
+    const radX = degToRad(angleX);
+    const radY = degToRad(angleY);
+    const radZ = degToRad(angleZ);
+
+    const sinX = Math.sin(radX);
+    const cosX = Math.cos(radX);
+    const sinY = Math.sin(radY);
+    const cosY = Math.cos(radY);
+    const sinZ = Math.sin(radZ);
+    const cosZ = Math.cos(radZ);
+
+    const rotatedX = vector[0] * cosY * cosZ - vector[1] * (cosX * sinZ + sinX * sinY * cosZ) + vector[2] * (sinX * sinZ - cosX * sinY * cosZ);
+    const rotatedY = vector[0] * cosY * sinZ + vector[1] * (cosX * cosZ - sinX * sinY * sinZ) - vector[2] * (sinX * cosZ + cosX * sinY * sinZ);
+    const rotatedZ = vector[0] * sinY + vector[1] * sinX * cosY + vector[2] * cosX * cosY;
+
+    return [rotatedX, rotatedY, rotatedZ];
+}
+
+function calculateRotation() {
+    const vectorInput = document.getElementById("vector").value.split(",").map(Number);
+    const angleX = parseFloat(document.getElementById("angleX").value);
+    const angleY = parseFloat(document.getElementById("angleY").value);
+    const angleZ = parseFloat(document.getElementById("angleZ").value);
+
+    const rotatedVector = rotateVector(vectorInput, angleX, angleY, angleZ);
+
+    document.getElementById("result").textContent = `Vector Rotado: [${rotatedVector.join(", ")}]`;
+}
+</script>
+</head>
+<body>
+<div class="container">
+    <h1>Rotación de Vectores en 3D</h1>
+    <p>Ingrese un vector tridimensional (ejemplo: 1, 2, 3) y los ángulos de rotación en los ejes X, Y y Z:</p>
+    <input type="text" id="vector" placeholder="Vector (x, y, z)" /><br>
+    <input type="text" id="angleX" placeholder="Ángulo de Rotación en X" /><br>
+    <input type="text" id="angleY" placeholder="Ángulo de Rotación en Y" /><br>
+    <input type="text" id="angleZ" placeholder="Ángulo de Rotación en Z" /><br>
+    <button onclick="calculateRotation()">Calcular Rotación</button>
+    <h2>Resultado:</h2>
+    <p id="result"></p>
+</div>
+</body>
+</html>
